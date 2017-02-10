@@ -25,7 +25,7 @@ class Cleverbot
     url = "http://cleverbot.com/getreply?key=#{@api_key}&input=#{str}&cs=#{@cs}"
     response = RestClient.get(url)
     JSON.parse(response)
-
+    puts response
     response['output']
   end
 
