@@ -12,7 +12,7 @@ class Cleverbot
     @api_key = api_key
 
     url = "http://cleverbot.com/getreply?key=#{@api_key}"
-    response = nil
+    response = { 'output' => nil }
     while response['output'].nil?
       response = RestClient.get(url)
       response = JSON.parse(response)
@@ -27,7 +27,7 @@ class Cleverbot
   # @return [String] The bot's response, or its error message.
   def say(str)
     url = "http://cleverbot.com/getreply?key=#{@api_key}&input=#{str}&cs=#{@cs}"
-    response = nil
+    response = { 'output' => nil }
     while response['output'].nil?
       response = RestClient.get(url)
       response = JSON.parse(response)
