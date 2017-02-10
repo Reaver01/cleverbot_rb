@@ -1,6 +1,7 @@
 # cleverbot
 
 A Ruby wrapper for the cleverbot.com API.
+Adapted from cleverbot.io API for cleverbot.com
 
 ## Installation
 ### Bundler
