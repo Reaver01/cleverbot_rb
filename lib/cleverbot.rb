@@ -14,7 +14,6 @@ class Cleverbot
     url = "http://cleverbot.com/getreply?key=#{@api_key}"
     response = RestClient.get(url)
     JSON.parse(response)
-    puts response
     @cs = response['cs']
   end
 
@@ -22,11 +21,9 @@ class Cleverbot
   # @param str [String] The message to send to the bot.
   # @return [String] The bot's response, or its error message.
   def say(str)
-    url = "http://cleverbot.com/getreply?key=#{@api_key}&input=#{str}&cs=#{@cs}"
+    url = "http://cleverbot.com/getreply?key=#{@api_key}&input=#{str}&cs=#{@cs}&callback=ProcessReply"
     response = RestClient.get(url)
     JSON.parse(response)
-    puts response
-    puts @api_key
     response['output']
   end
 
