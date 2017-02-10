@@ -10,23 +10,18 @@ class Cleverbot
   # @param api_key [String] The API key for the Cleverbot API.
   def initialize(api_key)
     @api_key = api_key
-
-    url = "http://cleverbot.com/getreply?key=#{@api_key}"
-    response = RestClient.get(url)
-    response = JSON.parse(response)
-    puts response
-    @cs = response['cs']
   end
 
   # Sends the bot a message and returns its response.
   # @param str [String] The message to send to the bot.
   # @return [String] The bot's response, or its error message.
   def say(str)
-    url = "http://cleverbot.com/getreply?key=#{@api_key}&input=#{str}&cs=#{@cs}"
+    url = "http://cleverbot.com/getreply?key=#{@api_key}&input=#{str}"
     response = RestClient.get(url)
     response = JSON.parse(response)
     puts response
     response['output']
+    @cs = response['cs']
   end
 
   # private
