@@ -1,5 +1,5 @@
 require 'httpclient'
-require 'oj'
+require 'json'
 require_relative 'cleverbot_errors'
 
 class Cleverbot
@@ -15,7 +15,8 @@ class Cleverbot
     params = {
       key: @api_key
     }
-    response = Oj.load(@client.post('http://cleverbot.com/getreply', params).body)
+    response = @client.post('http://cleverbot.com/getreply', params).body
+    response = JSON.parse(response)
     try_throw(response['errorline'])
 
     @cs = response['cs']
