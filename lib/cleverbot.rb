@@ -20,8 +20,8 @@ class Cleverbot
     response = RestClient.get(url)
     response = JSON.parse(response)
     puts response
-    response['output']
     @cs = response['cs']
+    response['output']
   end
 
   # private
