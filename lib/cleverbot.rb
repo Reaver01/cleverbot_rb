@@ -28,9 +28,11 @@ class Cleverbot
   def say(str)
     url = "http://cleverbot.com/getreply?key=#{@api_key}&input=#{str}&cs=#{@cs}"
     response = { 'output' => nil }
-    while response['output'].nil?
+    x = 0
+    while response['output'].nil? && x < 10
       response = RestClient.get(url)
       response = JSON.parse(response)
+      x += 1
     end
     puts response['output']
     response['output']
