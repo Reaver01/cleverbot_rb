@@ -34,6 +34,7 @@ class Cleverbot
       response = JSON.parse(response)
       x += 1
     end
+    @cs = response['cs']
     puts response['output']
     response['output']
   end
