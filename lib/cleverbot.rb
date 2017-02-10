@@ -11,10 +11,10 @@ class Cleverbot
   def initialize(api_key)
     @api_key = api_key
 
-    url = "http://cleverbot.com/getreply?key=#{@api_key}"
+    url = "http://cleverbot.com/getreply?key=#{@api_key}&input="
     response = RestClient.get(url)
     response = JSON.parse(response)
-    @cs = response['cs']
+    puts response
   end
 
   # Sends the bot a message and returns its response.
@@ -24,7 +24,7 @@ class Cleverbot
     url = "http://cleverbot.com/getreply?key=#{@api_key}&input=#{str}&callback=ProcessReply"
     response = RestClient.get(url)
     response = JSON.parse(response)
-    response['output']
+    puts response
   end
 
   # private
