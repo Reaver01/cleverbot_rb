@@ -17,6 +17,7 @@ class Cleverbot
       response = JSON.parse(response)
     end
     @cs = response['cs']
+    nil
   end
 
   # Sends the bot a message and returns its response.
@@ -27,8 +28,8 @@ class Cleverbot
     response = { 'output' => nil }
     x = 0
     while response['output'].nil? && x < 10
-      response = RestClient.get(url)
       begin
+        response = RestClient.get(url)
         response = JSON.parse(response)
       rescue
         reset
@@ -47,5 +48,6 @@ class Cleverbot
       response = JSON.parse(response)
     end
     @cs = response['cs']
+    nil
   end
 end
