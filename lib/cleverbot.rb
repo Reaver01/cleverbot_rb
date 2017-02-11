@@ -45,4 +45,5 @@ class Cleverbot
       end
       @cs = response['cs']
     end
+  end
 end
