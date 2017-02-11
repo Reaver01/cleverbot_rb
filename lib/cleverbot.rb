@@ -12,9 +12,11 @@ class Cleverbot
     @api_key = api_key
     url = "http://cleverbot.com/getreply?key=#{@api_key}&wrapper=cleverbot_rb"
     response = { 'output' => nil }
-    while response['output'].nil?
+    x = 0
+    while response['output'].nil? && x < 10
       response = RestClient.get(url)
       response = JSON.parse(response)
+      x += 1
     end
     @cs = response['cs']
     nil
@@ -43,9 +45,11 @@ class Cleverbot
   def reset
     url = "http://cleverbot.com/getreply?key=#{@api_key}&wrapper=cleverbot_rb"
     response = { 'output' => nil }
-    while response['output'].nil?
+    x = 0
+    while response['output'].nil? && x < 10
       response = RestClient.get(url)
       response = JSON.parse(response)
+      x += 1
     end
     @cs = response['cs']
     nil
