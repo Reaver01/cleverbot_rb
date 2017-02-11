@@ -27,23 +27,25 @@ class Cleverbot
     response = { 'output' => nil }
     x = 0
     while response['output'].nil? && x < 10
-      response = JSON.parse(RestClient.get(url))
+      response = RestClient.get(url)
+      begin
+        response = JSON.parse(response)
+      rescue
+        reset
+      end
       x += 1
     end
     @cs = response['cs']
-    check_reset(response['interaction_50'])
     response['output']
   end
 
-  def check_reset(i50)
-    unless i50.nil?
-      url = "http://cleverbot.com/getreply?key=#{@api_key}"
-      response = { 'output' => nil }
-      while response['output'].nil?
-        response = RestClient.get(url)
-        response = JSON.parse(response)
-      end
-      @cs = response['cs']
+  def reset
+    url = "http://cleverbot.com/getreply?key=#{@api_key}"
+    response = { 'output' => nil }
+    while response['output'].nil?
+      response = RestClient.get(url)
+      response = JSON.parse(response)
     end
+    @cs = response['cs']
   end
 end
