@@ -1,7 +1,7 @@
-require 'rest-client'
 require 'json'
-require_relative 'cleverbot_errors'
+require 'rest-client'
 
+# Defines Cleverbot.
 class Cleverbot
   # @return [String] The API Key for the instance.
   attr_reader :api_key
@@ -10,16 +10,13 @@ class Cleverbot
   # @param api_key [String] The API key for the Cleverbot API.
   def initialize(api_key)
     @api_key = api_key
-
     url = "http://cleverbot.com/getreply?key=#{@api_key}"
     response = { 'output' => nil }
     while response['output'].nil?
       response = RestClient.get(url)
       response = JSON.parse(response)
-
-      @cs = response['cs']
     end
-    puts @cs
+    @cs = response['cs']
   end
 
   # Sends the bot a message and returns its response.
@@ -30,27 +27,10 @@ class Cleverbot
     response = { 'output' => nil }
     x = 0
     while response['output'].nil? && x < 10
-      response = RestClient.get(url)
-      response = JSON.parse(response)
+      response = JSON.parse(RestClient.get(url))
       x += 1
     end
     @cs = response['cs']
-    puts response['output']
     response['output']
   end
-
-  # private
-
-  # Throws the relevant errors if possible.
-  # @param status [String] The status value from the API
-  # @raise [IncorrectCredentialsError] If the api_user and api_key are incorrect.
-  # @raise [DuplicatedReferenceNamesError] If the reference name is already in use by the instance.
-  # def try_throw(errorline)
-  #   case errorline
-  #   when 'Error: API credentials incorrect' then fail Cleverbot::Errors::IncorrectCredentialsError
-  #   when 'Error: reference name already exists' then fail Cleverbot::Errors::DuplicatedReferenceNamesError
-  #   when 'success' then return
-  #   else fail "#{errorline} UNRECOGNIZED ERROR! PLEASE REPORT TO CLEVERBOT RUBY ISSUE TRACKER."
-  #   end
-  # end
 end
