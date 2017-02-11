@@ -10,7 +10,7 @@ class Cleverbot
   # @param api_key [String] The API key for the Cleverbot API.
   def initialize(api_key)
     @api_key = api_key
-    url = "http://cleverbot.com/getreply?key=#{@api_key}&wrapper=Reaver01-ruby-cleverbotio"
+    url = "http://cleverbot.com/getreply?key=#{@api_key}&wrapper=cleverbot_rb"
     response = { 'output' => nil }
     while response['output'].nil?
       response = RestClient.get(url)
@@ -23,7 +23,7 @@ class Cleverbot
   # @param str [String] The message to send to the bot.
   # @return [String] The bot's response, or its error message.
   def say(str)
-    url = "http://cleverbot.com/getreply?key=#{@api_key}&input=#{str}&cs=#{@cs}&wrapper=Reaver01-ruby-cleverbotio"
+    url = "http://cleverbot.com/getreply?key=#{@api_key}&input=#{str}&cs=#{@cs}&wrapper=cleverbot_rb"
     response = { 'output' => nil }
     x = 0
     while response['output'].nil? && x < 10
@@ -40,7 +40,7 @@ class Cleverbot
   end
 
   def reset
-    url = "http://cleverbot.com/getreply?key=#{@api_key}&wrapper=Reaver01-ruby-cleverbotio"
+    url = "http://cleverbot.com/getreply?key=#{@api_key}&wrapper=cleverbot_rb"
     response = { 'output' => nil }
     while response['output'].nil?
       response = RestClient.get(url)

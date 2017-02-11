@@ -7,7 +7,7 @@ Adapted from cleverbot.io API for cleverbot.com
 ### Bundler
 Add this line to your Gemfile:
 ```ruby
-gem 'cleverbot_io', git: 'https://github.com/Reaver01/ruby-cleverbot.io',
+gem 'cleverbot_rb', git: 'git@github.com:Reaver01/cleverbot_rb.git',
                     branch: 'master'
 ```
 
