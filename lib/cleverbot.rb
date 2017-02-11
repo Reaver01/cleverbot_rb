@@ -19,7 +19,6 @@ class Cleverbot
       x += 1
     end
     @cs = response['cs']
-    nil
   end
 
   # Sends the bot a message and returns its response.
@@ -52,6 +51,5 @@ class Cleverbot
       x += 1
     end
     @cs = response['cs']
-    nil
   end
 end
