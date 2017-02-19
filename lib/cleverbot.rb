@@ -12,11 +12,10 @@ class Cleverbot
     @api_key = api_key
     url = "http://cleverbot.com/getreply?key=#{@api_key}&wrapper=cleverbot_rb"
     response = { 'output' => nil }
-    x = 0
-    while response['output'].nil? && x < 10
+    10.times do
       response = RestClient.get(url)
       response = JSON.parse(response)
-      x += 1
+      break unless response['output'].nil?
     end
     @cs = response['cs']
   end
@@ -27,15 +26,14 @@ class Cleverbot
   def say(str)
     url = "http://cleverbot.com/getreply?key=#{@api_key}&input=#{str}&cs=#{@cs}&wrapper=cleverbot_rb"
     response = { 'output' => nil }
-    x = 0
-    while response['output'].nil? && x < 10
+    10.times do
       begin
         response = RestClient.get(url)
         response = JSON.parse(response)
       rescue
         reset
       end
-      x += 1
+      break unless response['output'].nil?
     end
     @cs = response['cs']
     response['output']
@@ -44,11 +42,10 @@ class Cleverbot
   def reset
     url = "http://cleverbot.com/getreply?key=#{@api_key}&wrapper=cleverbot_rb"
     response = { 'output' => nil }
-    x = 0
-    while response['output'].nil? && x < 10
+    10.times do
       response = RestClient.get(url)
       response = JSON.parse(response)
-      x += 1
+      break unless response['output'].nil?
     end
     @cs = response['cs']
   end
