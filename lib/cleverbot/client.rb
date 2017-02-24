@@ -58,5 +58,12 @@ module Cleverbot
         new_convo.response
       end
     end
+
+    # Deletes a conversation
+    # @param identifier [thing] identifier associated with the conversation
+    # @return [Conversation] the removed conversation
+    def delete(identifier = :default)
+      @conversations.delete identifier
+    end
   end
 end
