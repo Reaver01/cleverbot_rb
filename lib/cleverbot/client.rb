@@ -1,4 +1,4 @@
-require 'cleverbot/data'
+require 'cleverbot/conversation'
 
 module Cleverbot
   # A client that wraps basic API functionality and can maintain
