@@ -40,6 +40,7 @@ module Cleverbot
     def reply(message)
       raise ArgumentError, 'message cannot be empty' if message.empty?
       update_data API.get_reply @key, message, cs
+      output
     end
 
     # Internally updates this conversation's data
