@@ -66,15 +66,15 @@ module Cleverbot
       @interactions = []
 
       data.select { |k, _| k.start_with? 'interaction_' }.each do |k, v|
-        next if v.empty?
+        next if v.empty? || k == 'interaction_count'
 
-        index = v[/\d+/].to_i
+        index = k[/\d+/].to_i - 1
 
         @interactions[index] ||= {}
 
         if k.match?(/interaction_\d+$/)
           @interactions[index][:input] = v
-        elsif k.match?(/interaction_\d+_output/)
+        elsif k.match?(/interaction_\d+_other$/)
           @interactions[index][:output] = v
         end
       end
