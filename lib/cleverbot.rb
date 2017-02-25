@@ -1,4 +1,4 @@
-require 'clever/client'
+require 'cleverbot/client'
 
 # Cleverbot
 module Cleverbot
