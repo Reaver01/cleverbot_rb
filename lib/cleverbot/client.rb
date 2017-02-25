@@ -47,7 +47,7 @@ module Cleverbot
     # @return [String] the response
     def say(message, identifier = :default)
       convo = conversation(identifier) || Conversation.new(key)
-      convo.reply key, message
+      convo.reply message
     end
 
     # Deletes a conversation
