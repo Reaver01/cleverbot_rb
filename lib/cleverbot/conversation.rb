@@ -60,7 +60,8 @@ module Cleverbot
         data['time_day'],
         data['time_hour'],
         data['time_minute'],
-        data['time_second']
+        data['time_second'],
+        0
       )
 
       @interactions = []
