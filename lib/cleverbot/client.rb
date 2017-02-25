@@ -46,7 +46,7 @@ module Cleverbot
     # @param identifier [thing] identifier to associate this converation with
     # @return [String] the response
     def say(message, identifier = :default)
-      convo = conversation(identifier) || Conversation.new(key)
+      convo = conversation(identifier) || Conversation.new(@key)
       convo.reply message
     end
 
