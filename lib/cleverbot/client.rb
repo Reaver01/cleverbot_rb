@@ -47,6 +47,8 @@ module Cleverbot
     # @return [String] the response
     def say(message, identifier = :default)
       convo = conversation(identifier) || Conversation.new(key)
+      @conversations[identifier] = convo
+
       convo.reply message
     end
 
