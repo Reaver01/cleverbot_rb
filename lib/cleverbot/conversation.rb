@@ -28,14 +28,16 @@ module Cleverbot
     # @return [Hash] all raw data about this conversation
     attr_reader :data
 
-    def initialize(data)
-      update_data(data)
+    # Start a new conversation with the API
+    # @param key [String] the API key used for this conversation
+    def initialize(key)
+      @key = key
     end
 
     # Replies to this conversation thread.
-    # @param key [String] the API key to make this reply with
     # @param message [String] the message to send
-    def reply(key, message)
+    # @raise [ArgumentError] if message is empty
+    def reply(message)
       raise ArgumentError, 'message cannot be empty' if message.empty?
       update_data API.get_reply key, message, cs
     end

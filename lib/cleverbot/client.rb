@@ -45,18 +45,9 @@ module Cleverbot
     # @param message [String] what to say
     # @param identifier [thing] identifier to associate this converation with
     # @return [String] the response
-    # @raise [ArgumentError] if message is empty
     def say(message, identifier = :default)
-      raise ArgumentError, 'message cannot be empty' if message.empty?
-
-      convo = conversation identifier
-      if convo
-        convo.reply key, message
-      else
-        new_convo = Conversation.new message
-        @conversations[identifier] = new_convo
-        new_convo.response
-      end
+      convo = conversation(identifier) || Conversation.new(key)
+      convo.reply key, message
     end
 
     # Deletes a conversation
