@@ -79,7 +79,7 @@ module Cleverbot
         end
       end
 
-      @interaction_count = data['interaction_count']
+      @interaction_count = data['interaction_count'].to_i
     end
   end
 end
